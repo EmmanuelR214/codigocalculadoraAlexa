@@ -10,7 +10,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hola tontis jejejeje';
+        const speakOutput = 'Holi jejejeje, ¿Qué deseas calcular?';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -162,7 +162,7 @@ const SumaIntentHandler = {
 
         let resultado = 0;
         resultado = numero1 + numero2;
-        const speakOutput = `El resultado es ${resultado}.`;
+        const speakOutput = `${numero1} más ${numero2} es ${resultado}.`;
         return handlerInput.responseBuilder
             .speak(speakOutput)
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
@@ -173,7 +173,7 @@ const SumaIntentHandler = {
 const RestaIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'SumaIntent';
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'RestaIntent';
     },
     handle(handlerInput) {
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
@@ -190,7 +190,7 @@ const RestaIntentHandler = {
 
         let resultado = 0;
         resultado = numero1 - numero2;
-        const speakOutput = `El resultado es ${resultado}.`;
+        const speakOutput = `${numero1} menos ${numero2} es ${resultado}.`;
         return handlerInput.responseBuilder
             .speak(speakOutput)
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
@@ -201,7 +201,7 @@ const RestaIntentHandler = {
 const MultiplicacionIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'SumaIntent';
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'MultiplicacionIntent';
     },
     handle(handlerInput) {
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
@@ -218,7 +218,7 @@ const MultiplicacionIntentHandler = {
 
         let resultado = 0;
         resultado = numero1 * numero2;
-        const speakOutput = `El resultado es ${resultado}.`;
+        const speakOutput = `${numero1} por ${numero2} es ${resultado}.`;
         return handlerInput.responseBuilder
             .speak(speakOutput)
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
@@ -229,7 +229,7 @@ const MultiplicacionIntentHandler = {
 const DivisionIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'SumaIntent';
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DivisionIntent';
     },
     handle(handlerInput) {
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
@@ -246,7 +246,7 @@ const DivisionIntentHandler = {
 
         let resultado = 0;
         resultado = numero1 / numero2;
-        const speakOutput = `El resultado es ${resultado}.`;
+        const speakOutput = `${numero1} entre ${numero2} es ${resultado}.`;
         return handlerInput.responseBuilder
             .speak(speakOutput)
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
@@ -272,7 +272,7 @@ const PotenciaIntentHandler = {
         }
 
         const resultado = Math.pow(numeroBase, numeroExponente);
-        const speakOutput = `El resultado es ${resultado}.`;
+        const speakOutput = `${numeroBase} a la ${numeroExponente} es ${resultado}.`;
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -298,7 +298,7 @@ const PorcentajeIntentHandler = {
         }
 
         const resultado = (numeroBase * numeroPorcentaje) / 100;
-        const speakOutput = `El resultado es ${resultado}.`;
+        const speakOutput = `el ${numeroPorcentaje} porciento de ${numeroBase} es ${resultado}.`;
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
