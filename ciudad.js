@@ -265,7 +265,8 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'You can say hello to me! How can I help?';
+        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const speakOutput = requestAttributes.t('HELP_MSG');
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -281,7 +282,8 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Goodbye!';
+        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const speakOutput = requestAttributes.t('GOODBYE_MSG');
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -295,7 +297,8 @@ const FallbackIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Sorry, I don\'t know about that. Please try again.';
+        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const speakOutput = requestAttributes.t('FALLBACK_MSG');
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -334,7 +337,8 @@ const ErrorHandler = {
         return true;
     },
     handle(handlerInput, error) {
-        const speakOutput = 'Lo siento, tuve problemas para realizar lo que pediste. Por favor, intenta de nuevo.';
+        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const speakOutput = requestAttributes.t('ERROR_MSG');        
         console.log(`~~~~ Error handled: ${error.message}`);
         console.log(`~~~~ Error stack: ${error.stack}`);
 
@@ -351,8 +355,9 @@ const DescripcionHandle = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DescripcionIntent';
     },
     handle(handlerInput) {
-        const speakOutput = "Conocida como 'la Bella Airosa', Pachuca de Soto es la capital de Hidalgo y es famosa por su reloj monumental, paisajes boscosos y ricos pastes.";
-
+        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const speakOutput = requestAttributes.t('DESCRIPTION_MSG');  
+        
         if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
             const aplDirective = createDirectivePayload(DOCUMENT_ID_Des, datasourceDes);
             handlerInput.responseBuilder.addDirective(aplDirective);
@@ -370,7 +375,8 @@ const LugaresHandle = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'LugaresIntent';
     },
     handle(handlerInput) {
-        const speakOutput = "Algunos lugares turisticos para visitar, serian: El centro Interactivo Mundo Futbol. El parque David Ben Gurión. Museo El Rehilete. Museo de sitio mina de acosta.";
+        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const speakOutput = requestAttributes.t('PLACES_MSG');  
         
         if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
             const aplDirective = createDirectivePayload(DOCUMENT_ID3, datasource3);
@@ -389,7 +395,8 @@ const ComidaHandle = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ComidaIntent';
     },
     handle(handlerInput) {
-        const speakOutput = "La cocina típica de Pachuca tiene una amplia variedad, como por ejemplo: tacos mineros de pollo con queso, unos chinicuiles a la mantequilla, gorditas de frijol, etc.";
+        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const speakOutput = requestAttributes.t('FOOD_MSG');  
         
         if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
             const aplDirective = createDirectivePayload(DOCUMENT_ID2, datasource2);
@@ -408,7 +415,8 @@ const TrajeHandle = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'TrajeIntent';
     },
     handle(handlerInput) {
-        const speakOutput = "El traje tipico de es el de la Huasteca.";
+        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const speakOutput = requestAttributes.t('COSTUME_MSG');  
         
         if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
             const aplDirective = createDirectivePayload(DOCUMENT_ID4, datasource4);
@@ -427,7 +435,9 @@ const PersonajesHandle = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'PersonajesIntent';
     },
     handle(handlerInput) {
-        const speakOutput = "A lo largo del tiempo ha habido personajes ilustres en la ciudad de Pachuca, tales como: Margarita Michelena, Bertha Zerón Nava, Juan Guillermo Villasana, Alfonso Cravioto Mejorada, Jesús Becerril Martínez, María Luisa Ross Landa.";
+        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const speakOutput = requestAttributes.t('PEOPLE_MSG');          
+        
         if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
             const aplDirective = createDirectivePayload(DOCUMENT_ID5, datasource5);
             handlerInput.responseBuilder.addDirective(aplDirective);
@@ -445,7 +455,8 @@ const MusicaHandle = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'MusicaIntent';
     },
     handle(handlerInput) {
-        const speakOutput = "Reproduciendo música de Pachuca de Soto Hidalgo.";
+        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const speakOutput = requestAttributes.t('MUSIC_MSG');  
         
         if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
             const aplDirective = createDirectivePayload(DOCUMENT_ID_Music, datasourceMusic);
